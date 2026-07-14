@@ -1,0 +1,34 @@
+================================================================================
+Modyfikacja +30 HP w VAGEDCSuite (Cel: ok. 138 KM / ~340 Nm)
+================================================================================
+Charakterystyka: Maksymalna bezpieczna modyfikacja dla seryjnej turbiny K14 
+oraz układu sprzęgła. Lekki szary dymek przy pełnym gazie (WOT).
+W programie VAGEDCSuite wpisujesz wartości rzeczywiste (mg/skok oraz mbar).
+
+1. Parametry Docelowe (Targety)
+--------------------------------------------------------------------------------
+* Maksymalna dawka paliwa: 52.0 mg/skok
+* Ciśnienie doładowania: 2050 mbar (1.05 bar doładowania - fizyczna granica K14)
+* Wskaźnik AFR: 16.5:1 (lekki dymek pod pełnym obciążeniem)
+* Szacowane EGT: poniżej 750°C (bezpieczna granica)
+
+2. Zmiany w Mapach w VAGEDCSuite
+--------------------------------------------------------------------------------
+* "Driver wish" (8x12) - życzenie kierowcy:
+  - W kolumnie 100% wciśnięcia pedału gazu dla obrotów 1500-3500 RPM wpisz 58.0 mg.
+* "Torque limiter" (20x1):
+  - 1000 RPM: 20.0 mg (zostaw serię!)
+  - 1500 RPM: 34.0 mg
+  - 1900 - 3000 RPM: 52.0 mg
+  - 3500 RPM: 48.0 mg
+  - 4000 RPM: 43.0 mg
+* "Smoke map" (16x13):
+  - Dla obrotów od 1800 do 3500 RPM w kolumnach przepływu powietrza MAF 
+    od 800 do 1000 mg/suw, wpisz wartość 52.0 mg.
+* "Boost pressure map" (16x10):
+  - W wierszach obrotów 1700 - 3500 RPM dla najwyższych dawek paliwa (kolumny 35-45 mg) 
+    ustaw ciśnienie na 2050 mbar.
+* "Single value boost limit" (SVBL):
+  - Zmień wartość na 2250 mbar.
+* "Boost limit map" (10x10):
+  - Dla ciśnień atmosferycznych 900-1000 mbar i obrotów 2000-4500 RPM podnieś wartości do 2200 mbar.

@@ -1,0 +1,40 @@
+================================================================================
+Analiza Stanu Obecnego w VAGEDCSuite (Plik: marcelt4 zaczynamy przelizcac kpl 1.bin)
+================================================================================
+Dane pojazdu: VW Transporter T4 2.5 TDI AJT (seryjnie 88 KM / 195 Nm)
+Bieżący Setup: Pompa 10 mm, wtryskiwacze ACV (0.205 mm / 220 bar), intercooler.
+
+1. STATUS MAP W VAGEDCSuite
+--------------------------------------------------------------------------------
+W programie VAGEDCSuite wartości są już automatycznie przeliczone na jednostki 
+rzeczywiste (nie musisz wpisywać wartości surowych/surowców, tylko gotowe liczby).
+
+* Kąt początku wtrysku / Start of Injection (mapa "Start of injection"):
+  - Prawidłowo przeniesiona z ACV. Odpowiednio przyspiesza wtrysk o ok. 1.0 - 1.5
+    stopnia OWK, co kompensuje wyższe ciśnienie otwarcia wtrysków (220 bar).
+* Napięcie nastawnika pompy (mapa "Pump tension map" o rozmiarze 16x16):
+  - Prawidłowo przeniesiona z ACV. Wartości napięcia (w mV) są niższe o ok. 15% 
+    w porównaniu z AJT, co idealnie kompensuje większe końcówki 0.205 mm.
+* Ogranicznik Momentu (mapa "Torque limiter" o rozmiarze 20x1):
+  - Ustawiony bezpiecznie. Maksymalna dopuszczalna dawka to 46.2 mg/skok przy 3000 RPM.
+* Ogranicznik Dymienia (mapa "Smoke map" o rozmiarze 16x13):
+  - Pozostawiony fabryczny z AJT. Maksymalna dopuszczalna dawka paliwa w tej mapie 
+    to zaledwie 38.0 - 39.0 mg/skok w średnim zakresie obrotów.
+* Żądanie Doładowania (mapa "Boost pressure map" o rozmiarze 16x10):
+  - Maksymalne żądanie doładowania wynosi 2029 mbar (ok. 1.03 bar względnego).
+* SVBL (Single Value Boost Limit) - KRYTYCZNY BŁĄD:
+  - SVBL wynosi seryjne 2000 mbar. Występuje konflikt: żądanie doładowania w mapie 
+    "Boost pressure map" (2029 mbar) jest wyższe niż SVBL (2000 mbar).
+  - Skutek: Sterownik odetnie moc i przejdzie w tryb awaryjny (limp mode) pod pełnym 
+    obciążeniem. Musisz podnieść SVBL!
+
+2. WNIOSKI Z LOGÓW VCDS (LOG-01-003-008-011)
+--------------------------------------------------------------------------------
+* W logu rzeczywista dawka paliwa pod pełnym obciążeniem (WOT) sięga maksymalnie 
+  41.8 mg/skok przy 2570 RPM.
+* Dawka jest ograniczana przez fabryczny "Smoke map" (Ogranicznik Dymienia).
+* Turbosprężarka powoli wstaje w dolnym zakresie obrotów, przez co przepływomierz 
+  (MAF) wolno rośnie, dodatkowo tnąc dawkę paliwa na początku przyspieszania.
+* Wskaźnik AFR wynosi ok. 20.5:1 (bardzo uboga, czysta mieszanka, seryjny AFR to 17.5:1).
+* Szacowane EGT: poniżej 550°C (dzięki intercoolerowi i małej dawce).
+* Szacowana Obecna Moc: ok. 105 - 108 KM / 255 - 265 Nm.

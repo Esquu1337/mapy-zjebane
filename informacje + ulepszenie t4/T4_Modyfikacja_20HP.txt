@@ -1,0 +1,33 @@
+================================================================================
+Modyfikacja +20 HP w VAGEDCSuite (Cel: ok. 128 KM / ~310 Nm)
+================================================================================
+Charakterystyka: Optymalny przyrost dynamiki. Brak dymu przy sprawnym MAF.
+W programie VAGEDCSuite wpisujesz wartości rzeczywiste (mg/skok oraz mbar).
+
+1. Parametry Docelowe (Targety)
+--------------------------------------------------------------------------------
+* Maksymalna dawka paliwa: 48.0 mg/skok
+* Ciśnienie doładowania: 2000 mbar (1.0 bar doładowania)
+* Wskaźnik AFR: 17.0:1
+* Szacowane EGT: poniżej 700°C
+
+2. Zmiany w Mapach w VAGEDCSuite
+--------------------------------------------------------------------------------
+* "Driver wish" (8x12) - życzenie kierowcy:
+  - W kolumnie 100% wciśnięcia pedału gazu dla obrotów 1500-3500 RPM wpisz 52.0 mg.
+* "Torque limiter" (20x1):
+  - 1000 RPM: 20.0 mg (zostaw serię!)
+  - 1500 RPM: 32.0 mg
+  - 1900 - 3000 RPM: 48.0 mg
+  - 3500 RPM: 46.0 mg
+  - 4000 RPM: 40.0 mg
+* "Smoke map" (16x13):
+  - Dla obrotów od 1800 do 3500 RPM w kolumnach przepływu powietrza MAF 
+    od 800 do 1000 mg/suw, wpisz wartość 48.0 mg.
+* "Boost pressure map" (16x10):
+  - W wierszach obrotów 1700 - 3500 RPM dla najwyższych dawek paliwa (kolumny 35-45 mg) 
+    ustaw ciśnienie na 2000 mbar.
+* "Single value boost limit" (SVBL):
+  - Zmień wartość na 2200 mbar.
+* "Boost limit map" (10x10):
+  - Dla ciśnień atmosferycznych 900-1000 mbar i obrotów 2000-4500 RPM podnieś wartości do 2150 mbar.

@@ -1,0 +1,32 @@
+================================================================================
+Modyfikacja +10 HP w VAGEDCSuite (Cel: ok. 118 KM / ~280 Nm)
+================================================================================
+Charakterystyka: Bezdymny i bardzo bezpieczny przyrost mocy dla sprzęgła i turbiny K14.
+W programie VAGEDCSuite wpisujesz wartości rzeczywiste (mg/skok oraz mbar).
+
+1. Parametry Docelowe (Targety)
+--------------------------------------------------------------------------------
+* Maksymalna dawka paliwa: 44.0 mg/skok (przy 2000-3000 RPM)
+* Ciśnienie doładowania: 1950 mbar (0.95 bar doładowania)
+* Wskaźnik AFR: 17.5:1 (spalanie całkowicie bezdymne)
+* Szacowane EGT: poniżej 630°C
+
+2. Zmiany w Mapach w VAGEDCSuite
+--------------------------------------------------------------------------------
+* "Torque limiter" (20x1) - zmień wartości w tabeli bezpośrednio na:
+  - 1000 RPM: 20.0 mg (zostaw serię!)
+  - 1500 RPM: 30.0 mg
+  - 1900 RPM: 44.0 mg
+  - 2000 - 3000 RPM: 44.0 mg
+  - 3500 RPM: 43.0 mg
+  - 4000 RPM: 39.0 mg
+* "Smoke map" (16x13) - zmień wartości bezpośrednio na:
+  - Dla obrotów od 1800 do 3500 RPM w kolumnach przepływu powietrza MAF 
+    od 800 do 1000 mg/suw, wpisz wartość 44.0 mg.
+* "Boost pressure map" (16x10) - zmień wartości bezpośrednio na:
+  - W wierszach obrotów 1700 - 3500 RPM dla najwyższych dawek paliwa (kolumny od 35 mg do 45 mg) 
+    ustaw ciśnienie na 1950 mbar.
+* "Single value boost limit" (SVBL) - znajdziesz go w parametrach/wyszukiwarce:
+  - Zmień wartość z 2000 mbar na 2150 mbar.
+* "Boost limit map" (10x10) - limiter doładowania:
+  - Dla ciśnień atmosferycznych 900-1000 mbar i obrotów 2000-4500 RPM podnieś wartości do 2100 mbar.
